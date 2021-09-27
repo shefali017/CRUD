@@ -12,7 +12,5 @@ const mongoose=require('mongoose')
      gender:String,
      status:String
  })
-
- const Userdb=mongoose.model('userdb',schema);
-
+ const Userdb=mongoose.model('userdb',schema)
  module.exports=Userdb;

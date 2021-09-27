@@ -1,5 +1,6 @@
 const express = require('express');
 var Userdb=require('../model/model');
+const {welcomeMail,updateMail}= require('../email/email')
 
 //create and save new user
 exports.create=(req,res)=>{
@@ -19,11 +20,13 @@ exports.create=(req,res)=>{
     user
     .save(user)
     .then(data=>{
-        //res.send(data)
+        //res.send(data) 
+        welcomeMail(user.email,user.name)
         res.redirect('/add-user');
+        
     })
     .catch(err=>{
-        res.status(500),send({
+        res.status(500).send({
             message:err.message|| "Some error occured while creating a create operation"
         });
     });
@@ -72,6 +75,7 @@ exports.update=(req,res)=>{
         if(!data){
             res.status(404).send({message:`Cannon update user with ${id}`})
         }else{
+            updateMail(data.email,data.name)
             res.send(data)
         }
     })
@@ -99,4 +103,3 @@ exports.delete=(req,res)=>{
         });
     });
 }
-

@@ -27,7 +27,8 @@ app.use('/css',express.static(path.resolve(__dirname,"assets/css")))
 app.use('/img',express.static(path.resolve(__dirname,"assets/img")))
 app.use('/js',express.static(path.resolve(__dirname,"assets/js")))
 
-//load routers
-app.use('/',require('./server/routes/router'))
+//load routers REST API-->>
+ app.use('/',require('./server/routes/router'))
+
 
 app.listen(PORT,()=>{console.log(`Server is running on http://localhost:${PORT}`)});
